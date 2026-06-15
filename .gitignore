@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+tasks.db
+
+.DS_Store
+Thumbs.db
+
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+*.retry
+
+.vscode/
+.idea/
