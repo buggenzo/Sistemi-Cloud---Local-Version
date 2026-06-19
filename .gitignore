@@ -1,16 +1,10 @@
-__pycache__/
-*.pyc
-tasks.db
-
-.DS_Store
-Thumbs.db
-
 .terraform/
+.terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
-.terraform.lock.hcl
+cloud-init.rendered.yml
 
-*.retry
+id_ed25519
+id_ed25519.pub
 
-.vscode/
-.idea/
+ansible/hosts.ini
