@@ -18,12 +18,12 @@ variable "master_cpus" {
 variable "master_memory" {
   description = "RAM del nodo Master"
   type        = string
-  default     = "1G" 
+  default     = "1.5G" 
 }
 
 variable "master_disk" {
   type        = string
-  default     = "5G"
+  default     = "10G"
 }
 
 variable "worker_cpus" {
@@ -45,5 +45,5 @@ variable "worker_disk" {
 variable "ssh_private_key_path" {
   description = "Percorso della chiave privata per Ansible"
   type        = string
-  default     = "./id_ed25519"
+  default     = "~/.ssh/k3s_key"
 }
