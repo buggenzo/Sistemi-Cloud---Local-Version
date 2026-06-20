@@ -30,3 +30,27 @@
         curl -sfL https://get.k3s.io | K3S_URL=https://{{ hostvars[groups['master'][0]]['ansible_host'] }}:6443 K3S_TOKEN={{ hostvars[groups['master'][0]]['k3s_token'] }} sh -
       args:
         creates: /usr/local/bin/k3s
+
+- name: Deploy dell'Applicazione sul Cluster
+  hosts: master
+  become: true
+  tasks:
+    - name: Crea la cartella dei manifesti sul Master
+      file:
+        path: /home/ubuntu/k8s
+        state: directory
+        mode: '0755'
+
+    - name: Copia tutti i file YAML dal PC locale al Master
+      copy:
+        src: ../k8s/
+        dest: /home/ubuntu/k8s/
+        mode: '0644'
+
+    - name: Applica il Taint protettivo sul Master
+      command: k3s kubectl taint nodes k3s-master node-role.kubernetes.io/master=true:NoSchedule
+      register: taint_result
+      failed_when: false 
+
+    - name: Esegui il deploy di tutta l'infrastruttura Kubernetes
+      command: k3s kubectl apply -f /home/ubuntu/k8s/
