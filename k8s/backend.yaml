@@ -14,9 +14,17 @@ spec:
     spec:
       containers:
         - name: backend
-          image: buggenzo/task-backend:v2
+          image: buggenzo/task-backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
+          resources:                           
+            requests:
+              cpu: "100m"                      
+              memory: "128Mi"                  
+            limits:
+              cpu: "250m"                     
+              memory: "256Mi"           
           livenessProbe:
             httpGet:
               path: /health
